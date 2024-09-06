@@ -11,5 +11,6 @@ import java.util.UUID;
 @Repository
 public interface PostazioniAziendaliRepository extends JpaRepository<PostazioneAziendale, UUID> {
 
-    boolean existsByTipoPostazioneAndEdificio (TipoPostazione tipoPostazione, Edificio edificio);
+    boolean existsByTipoPostazioneAndEdificio(TipoPostazione tipoPostazione, Edificio edificio);
+
 }

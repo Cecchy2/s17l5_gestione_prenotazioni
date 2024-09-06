@@ -1,6 +1,7 @@
 package dariocecchinato.s17l5_gestione_prenotazioni.runners;
 
 import dariocecchinato.s17l5_gestione_prenotazioni.entities.PostazioneAziendale;
+import dariocecchinato.s17l5_gestione_prenotazioni.exceptions.SavingException;
 import dariocecchinato.s17l5_gestione_prenotazioni.services.PostazioniAziendaliService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -25,12 +26,15 @@ public class PostazioniAziendaliRunner implements CommandLineRunner {
         PostazioneAziendale postazione5 = (PostazioneAziendale) context.getBean("postazione5");
 
 
-        postazioniAziendaliService.savePostazione(postazione1);
-        postazioniAziendaliService.savePostazione(postazione2);
-        postazioniAziendaliService.savePostazione(postazione3);
-        postazioniAziendaliService.savePostazione(postazione4);
-        postazioniAziendaliService.savePostazione(postazione5);
+        try {
+            //postazioniAziendaliService.savePostazione(postazione1);
+            //postazioniAziendaliService.savePostazione(postazione2);
+            //postazioniAziendaliService.savePostazione(postazione3);
+            //postazioniAziendaliService.savePostazione(postazione4);
+            //postazioniAziendaliService.savePostazione(postazione5);
+        }catch (SavingException e){
+            System.out.println(e.getMessage());
+        }
     }
-
 
 }

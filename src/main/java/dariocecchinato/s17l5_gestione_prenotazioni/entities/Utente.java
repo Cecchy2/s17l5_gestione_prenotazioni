@@ -23,6 +23,12 @@ public class Utente {
     @OneToMany(mappedBy = "utente")
     private List<Prenotazione> prenotazioni = new ArrayList<>();
 
+    public Utente(String userName, String nome, String eMail) {
+        this.userName = userName;
+        this.nome = nome;
+        this.eMail = eMail;
+    }
+
     @Override
     public String toString() {
         return "Utente{" +
