@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.cglib.core.Local;
 
 import java.time.LocalDate;
 import java.util.UUID;
@@ -22,6 +23,7 @@ public class Prenotazione {
     private StatoPrenotazione statoPrenotazione;
 
     private LocalDate dataPrenotazione;
+    private LocalDate finePrenotazione;
 
     @ManyToOne
     @JoinColumn(name = "postazione_id", nullable = false)
@@ -33,8 +35,16 @@ public class Prenotazione {
 
     public Prenotazione(LocalDate dataPrenotazione, PostazioneAziendale postazioneAziendale, Utente utente) {
         this.dataPrenotazione = dataPrenotazione;
+        this.finePrenotazione = dataPrenotazione.plusDays(1);
         this.postazioneAziendale = postazioneAziendale;
         this.utente = utente;
+this.statoPrenotazione= StatoPrenotazione.PRENOTATA;
+    }
+
+    public void aggiornaStato() {
+        if (finePrenotazione != null && LocalDate.now().isAfter(finePrenotazione)) {
+            this.statoPrenotazione = StatoPrenotazione.TERMINATA;
+        }
     }
 
     @Override
