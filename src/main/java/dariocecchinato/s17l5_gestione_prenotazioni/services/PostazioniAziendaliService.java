@@ -22,7 +22,7 @@ public class PostazioniAziendaliService {
     public void savePostazione(PostazioneAziendale newPostazione){
         if (postazioniAziendaliRepository.existsByTipoPostazioneAndEdificio(newPostazione.getTipoPostazione(), newPostazione.getEdificio())) throw new SavingException("La postazione già esiste nel DB");
         postazioniAziendaliRepository.save(newPostazione);
-        log.info("La postazione " + newPostazione.getTipoPostazione() + " è stata salvata");
+        log.info("La postazione " + newPostazione.getTipoPostazione() + " è stata salvata correttamente");
     }
 
     public PostazioneAziendale findById(UUID id) {
@@ -31,5 +31,20 @@ public class PostazioniAziendaliService {
 
     public List<PostazioneAziendale> findByTipoPostazione (TipoPostazione tipoPostazione){
         return postazioniAziendaliRepository.findByTipoPostazione(tipoPostazione);
+    }
+
+    public List<PostazioneAziendale> findByTipoPostazioneAndEdificioCitta (TipoPostazione tipoPostazione, String citta){
+        return  postazioniAziendaliRepository.findByTipoPostazioneAndEdificioCitta(tipoPostazione,citta);
+    }
+
+    public List<PostazioneAziendale> findByEdificioNome(String nome){
+        return postazioniAziendaliRepository.findByEdificioNome(nome);
+    }
+
+    public void findByIdAndDelete (UUID id){
+        PostazioneAziendale found = this.findById(id);
+        postazioniAziendaliRepository.delete(found);
+        log.info("La postazione " + found.getTipoPostazione() +" è stata eliminata");
+
     }
 }

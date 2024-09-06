@@ -16,4 +16,10 @@ public interface PostazioniAziendaliRepository extends JpaRepository<PostazioneA
 
     List<PostazioneAziendale> findByTipoPostazione (TipoPostazione tipoPostazione);
 
+    List<PostazioneAziendale> findByTipoPostazioneAndEdificioCitta(TipoPostazione tipoPostazione, String citta);
+
+    List<PostazioneAziendale> findByEdificioNome(String nome);
+
+
+
 }

@@ -29,9 +29,9 @@ public class PrenotazioniService {
     }
     public void aggiornaStatoPrenotazioni() {
         List<Prenotazione> prenotazioni = prenotazioniRepository.findAll();
-        for (Prenotazione prenotazione : prenotazioni) {
+        prenotazioni.forEach(prenotazione -> {
             prenotazione.aggiornaStato();
             prenotazioniRepository.save(prenotazione);
-        }
+        });
     }
 }

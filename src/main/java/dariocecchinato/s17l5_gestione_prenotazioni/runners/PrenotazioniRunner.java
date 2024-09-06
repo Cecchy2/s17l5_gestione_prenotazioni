@@ -1,7 +1,9 @@
 package dariocecchinato.s17l5_gestione_prenotazioni.runners;
 
+import dariocecchinato.s17l5_gestione_prenotazioni.Enum.TipoPostazione;
 import dariocecchinato.s17l5_gestione_prenotazioni.entities.PostazioneAziendale;
 import dariocecchinato.s17l5_gestione_prenotazioni.entities.Utente;
+import dariocecchinato.s17l5_gestione_prenotazioni.exceptions.SavingException;
 import dariocecchinato.s17l5_gestione_prenotazioni.services.PostazioniAziendaliService;
 import dariocecchinato.s17l5_gestione_prenotazioni.services.PrenotazioniService;
 import dariocecchinato.s17l5_gestione_prenotazioni.services.UtentiService;
@@ -12,6 +14,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 @Component
@@ -29,6 +32,7 @@ public class PrenotazioniRunner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
+        //**************************** questo aggiorna le prenotazioni all' avvio*******************************
         prenotazioniService.aggiornaStatoPrenotazioni();
 
         Utente utente1 = utentiService.findById(UUID.fromString("05950cc9-19e6-49d2-bc6b-e054f01c815a"));
@@ -55,17 +59,31 @@ public class PrenotazioniRunner implements CommandLineRunner {
         LocalDate dataPrenotazione6 =  LocalDate.of(2020,12, 21);
         LocalDate dataPrenotazione7 =  LocalDate.of(2024,6, 20);
         LocalDate dataPrenotazione8 =  LocalDate.of(2024,3, 4);
+        LocalDate dataPrenotazione9 = LocalDate.of(2024,9,8);
 
         try{
-            //prenotazioniService.creaPrenotazione(dataPrenotazione1,postazione1,utente1);
-            //prenotazioniService.creaPrenotazione(dataPrenotazione2,postazione2,utente2);
-            //prenotazioniService.creaPrenotazione(dataPrenotazione3,postazione3,utente3);
-            //prenotazioniService.creaPrenotazione(dataPrenotazione4,postazione4,utente4);
-            //prenotazioniService.creaPrenotazione(dataPrenotazione5,postazione5,utente5);
-            //prenotazioniService.creaPrenotazione(dataPrenotazione6,postazione6,utente6);
-            //prenotazioniService.creaPrenotazione(dataPrenotazione7,postazione7,utente7);
+            prenotazioniService.creaPrenotazione(dataPrenotazione1,postazione1,utente1);
+            prenotazioniService.creaPrenotazione(dataPrenotazione2,postazione2,utente2);
+            prenotazioniService.creaPrenotazione(dataPrenotazione3,postazione3,utente3);
+            prenotazioniService.creaPrenotazione(dataPrenotazione4,postazione4,utente4);
+            prenotazioniService.creaPrenotazione(dataPrenotazione5,postazione5,utente5);
+            prenotazioniService.creaPrenotazione(dataPrenotazione6,postazione6,utente6);
+            prenotazioniService.creaPrenotazione(dataPrenotazione7,postazione7,utente7);
             System.out.println("Prenotazione confermata");
         }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+
+        System.out.println("*********************************** POSTAZIONI PER EDIFICIO E CITTA` ***********************************");
+        List<PostazioneAziendale> postazionePrivatoThomasenaburgh = postazioniAziendaliService.findByTipoPostazioneAndEdificioCitta(TipoPostazione.PRIVATO,"Thomasenaburgh");
+        System.out.println("Postazione Privata a Thomasenaburgh" + postazionePrivatoThomasenaburgh);
+
+
+        System.out.println("*********************************** CREA PRENOTAZIONE PER RICERCA POSTAZIONE E CITTA` ***********************************");
+        try {
+            prenotazioniService.creaPrenotazione(dataPrenotazione9, postazionePrivatoThomasenaburgh.getFirst(), utente1);
+        }catch (SavingException e){
             System.out.println(e.getMessage());
         }
     }
