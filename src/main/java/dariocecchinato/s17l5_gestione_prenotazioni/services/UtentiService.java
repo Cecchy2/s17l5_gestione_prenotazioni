@@ -25,4 +25,9 @@ public class UtentiService {
     public Utente findById (UUID id){
         return  utenteRepository.findById(id).orElseThrow(()-> new NotFoundException(id));
     }
+
+    public Utente findByUserName (String userName){
+        return utenteRepository.findByUserName(userName);
+    }
+
 }

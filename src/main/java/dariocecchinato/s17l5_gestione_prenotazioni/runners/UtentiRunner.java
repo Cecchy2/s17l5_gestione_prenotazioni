@@ -1,6 +1,7 @@
 package dariocecchinato.s17l5_gestione_prenotazioni.runners;
 
 import dariocecchinato.s17l5_gestione_prenotazioni.entities.Utente;
+import dariocecchinato.s17l5_gestione_prenotazioni.exceptions.NotFoundException;
 import dariocecchinato.s17l5_gestione_prenotazioni.exceptions.SavingException;
 import dariocecchinato.s17l5_gestione_prenotazioni.services.UtentiService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,5 +32,14 @@ public class UtentiRunner implements CommandLineRunner {
     }catch (SavingException e) {
             System.out.println(e.getMessage());
         }
+
+        System.out.println("*********************************** CERCA DA USERNAME ***********************************");
+        try{
+            System.out.println(utentiService.findByUserName("concetta.ferri"));
+        }catch (NotFoundException e){
+            System.out.println(e.getMessage());
+        }
+
+
     }
 }

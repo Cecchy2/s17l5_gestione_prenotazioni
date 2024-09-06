@@ -4,6 +4,7 @@ import dariocecchinato.s17l5_gestione_prenotazioni.entities.Utente;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+
 import java.util.Optional;
 import java.util.UUID;
 
@@ -15,4 +16,6 @@ public interface UtenteRepository extends JpaRepository<Utente, UUID> {
     Utente findByNome (String nome);
 
     Optional<Utente> findById (UUID id);
+
+    Utente findByUserName(String userName);
 }
