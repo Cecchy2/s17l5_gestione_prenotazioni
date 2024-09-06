@@ -31,11 +31,11 @@ public class Utente {
 
     @Override
     public String toString() {
-        return "Utente{" +
-                "id=" + id +
-                ", userName='" + userName + '\'' +
-                ", nome='" + nome + '\'' +
-                ", eMail='" + eMail + '\'' +
+        return "Utente {\n" +
+                " id= " + id +
+                ", USERNAME='" + userName + '\n' +
+                ", NOME='" + nome + '\n' +
+                ", EMAIL='" + eMail + '\n' +
                 '}';
     }
 }

@@ -1,14 +1,19 @@
 package dariocecchinato.s17l5_gestione_prenotazioni.runners;
 
+import dariocecchinato.s17l5_gestione_prenotazioni.Enum.TipoPostazione;
 import dariocecchinato.s17l5_gestione_prenotazioni.entities.PostazioneAziendale;
 import dariocecchinato.s17l5_gestione_prenotazioni.exceptions.SavingException;
 import dariocecchinato.s17l5_gestione_prenotazioni.services.PostazioniAziendaliService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
+@Slf4j
 @Component
 @Order(2)
 public class PostazioniAziendaliRunner implements CommandLineRunner {
@@ -35,6 +40,10 @@ public class PostazioniAziendaliRunner implements CommandLineRunner {
         }catch (SavingException e){
             System.out.println(e.getMessage());
         }
+
+
+        List<PostazioneAziendale> postazioniOpenSpace= postazioniAziendaliService.findByTipoPostazione(TipoPostazione.OPENSPACE);
+        System.out.println("Postazioni OpenSpace " + postazioniOpenSpace.toString());
     }
 
 }

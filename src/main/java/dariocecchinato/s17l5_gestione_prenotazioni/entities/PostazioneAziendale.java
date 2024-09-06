@@ -37,12 +37,12 @@ public class PostazioneAziendale {
 
     @Override
     public String toString() {
-        return "PostazioneAziendale{" +
-                "edificio=" + edificio +
-                ", numeroMaxOccupanti=" + numeroMaxOccupanti +
-                ", descrizione='" + descrizione + '\'' +
-                ", tipoPostazione=" + tipoPostazione +
-                ", id=" + id +
-                '}';
+        return "PostazioneAziendale {\n" +
+                "   ID: " + id + ",\n" +
+                "   Edificio: " + edificio + ",\n" +
+                "   Numero massimo occupanti: " + numeroMaxOccupanti + ",\n" +
+                "   Descrizione: '" + descrizione + "',\n" +
+                "   Tipo di postazione: " + tipoPostazione + "\n" +
+                "}";
     }
 }

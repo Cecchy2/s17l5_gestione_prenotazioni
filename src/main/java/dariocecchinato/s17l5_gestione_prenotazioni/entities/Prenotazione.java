@@ -49,11 +49,11 @@ this.statoPrenotazione= StatoPrenotazione.PRENOTATA;
 
     @Override
     public String toString() {
-        return "Prenotazione{" +
-                "id=" + id +
-                ", statoPrenotazione=" + statoPrenotazione +
-                ", dataPrenotazione=" + dataPrenotazione +
-                ", postazioneAziendale=" + postazioneAziendale +
+        return "Prenotazione{ \n" +
+                "id= " + id + "'\n'" +
+                ", statoPrenotazione= " + statoPrenotazione + "'\n'" +
+                ", dataPrenotazione= " + dataPrenotazione + "'\n'" +
+                ", postazioneAziendale=" + postazioneAziendale + "'\n'"+
                 '}';
     }
 }
